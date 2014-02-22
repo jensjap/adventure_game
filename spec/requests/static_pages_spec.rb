@@ -4,9 +4,14 @@ describe "Static pages" do
 
   describe "Home page" do
 
-    it "should have the content 'Kupo App'" do
+    it "should have the content 'KUPO'" do
       visit '/static_pages/home'
-      expect(page).to have_content('KUPO App')
+      expect(page).to have_content('KUPO')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/home'
+      expect(page).to have_title("KUPO | Home")
     end
   end
 
@@ -16,6 +21,11 @@ describe "Static pages" do
       visit '/static_pages/help'
       expect(page).to have_content('Help')
     end
+
+    it "should have the right title" do
+      visit '/static_pages/help'
+      expect(page).to have_title("KUPO | Help")
+    end
   end
 
   describe "About page" do
@@ -23,6 +33,11 @@ describe "Static pages" do
     it "should have the content 'About Us'" do
       visit '/static_pages/about'
       expect(page).to have_content('About Us')
+    end
+
+    it "should have the right title" do
+      visit '/static_pages/about'
+      expect(page).to have_title('KUPO | About Us')
     end
   end
 end
