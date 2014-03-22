@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  let(:base_title) { "KUPO" }
+  let(:base_title) { "KUPO Free Company" }
 
   describe "Home page" do
 
@@ -13,7 +13,12 @@ describe "Static pages" do
 
     it "should have the right title" do
       visit '/static_pages/home'
-      expect(page).to have_title("#{base_title} | Home")
+      expect(page).to have_title("#{base_title}")
+    end
+
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      expect(page).not_to have_title('| Home')
     end
   end
 
