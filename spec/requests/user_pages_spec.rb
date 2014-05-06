@@ -48,6 +48,10 @@ describe "UserPages" do
         end
 
         it { should_not have_link('delete', href: user_path(admin)) }
+
+        it "admin should not destroy himself" do
+          expect { delete user_path(admin) }.not_to change(User, :count)
+        end
       end
     end
   end
@@ -144,6 +148,33 @@ describe "UserPages" do
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.name).to  eq new_name }
       specify { expect(user.reload.email).to eq new_email }
+    end
+
+    describe "forbidden attributes" do
+      let(:params) do
+        { user: { admin: true, password: user.password,
+                  password_confirmation: user.password } }
+      end
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
+      specify { expect(user.reload).not_to be_admin }
+    end
+  end
+
+  describe "after signing in" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { sign_in user, no_capybara: true }
+
+    describe "creating a new user" do
+      before { get signup_path }
+      specify { expect(response).to redirect_to(root_url) }
+    end
+
+    describe "create a new user" do
+      before { post users_path, user: user }
+      specify { expect(response).to redirect_to(root_url) }
     end
   end
 end
