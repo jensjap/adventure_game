@@ -1,0 +1,30 @@
+<h1>Adventure Game List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adventure_games.each do |adventure_game| %>
+      <tr>
+        <td><%= adventure_game.title %></td>
+        <td><%= link_to 'Show', adventure_game %></td>
+        <td><%= link_to 'Edit', edit_adventure_game_path(adventure_game) %></td>
+        <td><%= link_to 'Destroy', adventure_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adventure game', new_adventure_game_path %>

@@ -1,0 +1,11 @@
+<% provide(:title, @adventure_game.title) %>
+<h1><%= @adventure_game.title %></h1>
+<h2><%= @adventure_game.description %></h2>
+<table>
+  <tbody>
+    <tr><td>Genre: <%= @adventure_game.genre %></td></tr>
+    <tr><td>Content Rating: <%= @adventure_game.content_rating %></td></tr>
+    <tr><td>Content Rating Description: <%= @adventure_game.content_rating_description %></td></tr>
+    <tr><td>Published: <%= @adventure_game.published? %></td></tr>
+  </tbody>
+</table>

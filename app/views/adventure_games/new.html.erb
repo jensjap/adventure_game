@@ -1,0 +1,11 @@
+<% provide(:title, 'New Game') %>
+<h1>New Game</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@adventure_game) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Create new game", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

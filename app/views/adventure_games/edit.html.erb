@@ -1,0 +1,15 @@
+<h1>Edit Game</h1>
+
+<% provide(:title, 'Edit Game') %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@adventure_game) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Show', @adventure_game %> |
+<%= link_to 'Back', adventure_games_path %>
