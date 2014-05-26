@@ -1,3 +1,4 @@
+<% provide(:title, 'Adventure Game List') %>
 <h1>Adventure Game List</h1>
 
 <table>
@@ -16,10 +17,12 @@
   <tbody>
     <% @adventure_games.each do |adventure_game| %>
       <tr>
-        <td><%= adventure_game.title %></td>
-        <td><%= link_to 'Show', adventure_game %></td>
-        <td><%= link_to 'Edit', edit_adventure_game_path(adventure_game) %></td>
-        <td><%= link_to 'Destroy', adventure_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if adventure_game.published? or adventure_game.authors.to_a.include?(current_user) %>
+          <td><%= adventure_game.title %></td>
+          <td><%= link_to 'Show', adventure_game %></td>
+          <td><%= link_to 'Edit', edit_adventure_game_path(adventure_game) %></td>
+          <td><%= link_to 'Destroy', adventure_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -14,3 +14,8 @@
 
 <%= f.label :content_rating_description %>
 <%= f.text_field :content_rating_description %>
+
+<%= f.label :publish do %>
+  <%= f.check_box :published %>
+  Publish this game.
+<% end %>

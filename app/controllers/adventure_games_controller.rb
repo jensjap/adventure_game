@@ -24,6 +24,7 @@ class AdventureGamesController < ApplicationController
     @adventure_game = AdventureGame.new(adventure_game_params)
 
     if @adventure_game.save
+      @adventure_game.authors.append(current_user)
       redirect_to @adventure_game, notice: 'Adventure game was successfully created.'
     else
       render action: 'new'
